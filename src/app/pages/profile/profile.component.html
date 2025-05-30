@@ -1,0 +1,75 @@
+<div class="profile-wrapper">
+  <!-- Información Personal -->
+  <mat-card class="section-card" [@fadeIn]>
+    <mat-card-title>Información Personal</mat-card-title>
+    <mat-card-content>
+      <form #profileForm="ngForm" (ngSubmit)="updateProfile()">
+        <div class="form-group">
+          <label>ID de Usuario:</label>
+          <input matInput type="text" [value]="user.id" disabled class="styled-input" />
+        </div>
+
+        <div class="form-group">
+          <label>Nombre Completo:</label>
+          <input matInput type="text" name="name" [(ngModel)]="user.name" required class="styled-input" />
+        </div>
+
+        <div class="form-group">
+          <label>Nombre de Usuario:</label>
+          <input matInput type="text" name="username" [(ngModel)]="user.username" required class="styled-input" />
+        </div>
+
+        <div class="form-group">
+          <label>Correo Electrónico:</label>
+          <input matInput type="email" name="email" [(ngModel)]="user.email" required class="styled-input" />
+        </div>
+
+        <div class="form-group">
+          <label>Teléfono:</label>
+          <input matInput type="tel" name="phone" [(ngModel)]="user.phoneNumber" class="styled-input" />
+        </div>
+
+        <div class="form-group">
+          <label>Dirección:</label>
+          <textarea matInput name="address" [(ngModel)]="user.address" rows="3" class="styled-input"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="profileForm.invalid">
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Cambiar Contraseña -->
+  <mat-card class="section-card" [@fadeIn]>
+    <mat-card-title>Cambiar Contraseña</mat-card-title>
+    <mat-card-content>
+      <form #passwordForm="ngForm" (ngSubmit)="changePassword()">
+        <div class="form-group">
+          <label>Nueva Contraseña:</label>
+          <input matInput type="password" name="newPassword" [(ngModel)]="passwordData.newPassword"
+                 #newPass="ngModel" minlength="8" required class="styled-input" />
+          <small class="form-hint">Mínimo 8 caracteres</small>
+        </div>
+
+        <div class="form-group">
+          <label>Confirmar Nueva Contraseña:</label>
+          <input matInput type="password" name="confirmPassword" [(ngModel)]="passwordData.confirmPassword"
+                 [pattern]="passwordData.newPassword" required #confirmPass="ngModel" class="styled-input" />
+          <small *ngIf="confirmPass.errors?.['pattern'] && confirmPass.touched" class="text-danger">
+            Las contraseñas no coinciden
+          </small>
+        </div>
+
+        <div class="form-actions">
+          <button mat-raised-button color="accent" type="submit" [disabled]="passwordForm.invalid">
+            Cambiar Contraseña
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

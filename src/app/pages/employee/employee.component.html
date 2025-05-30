@@ -1,0 +1,9 @@
+<h2 class="titulo">Bienvenido al Panel de Empleado</h2>
+
+<h3 class="subtitulo">Módulos</h3>
+<div class="modules-container">
+  <div class="module-card" *ngFor="let area of areas" (click)="irARuta(area.ruta)">
+    <div class="module-icon">{{ area.icon }}</div>
+    <div class="module-name">{{ area.nombre }}</div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="contenedor">
+  <h2>Movimientos de Inventario</h2>
+
+  <div class="resumen">
+    <div class="resumen-card">Total movimientos: {{ totalMovements }}</div>
+    <div class="resumen-card">Huevos en stock: {{ totalEggs }}</div>
+    <div class="resumen-card">Bandejas de huevo en stock: {{ totalCombs }}</div>
+  </div>
+
+  <h2>📄 Historial de Movimientos</h2>
+
+  <table mat-table [dataSource]="movements" class="mat-elevation-z8">
+
+    <!-- Fecha movement Column -->
+    <ng-container matColumnDef="fechaMovimiento">
+      <th mat-header-cell *matHeaderCellDef> Fecha Movimiento </th>
+      <td mat-cell *matCellDef="let movement"> {{ movement.movementDate | date:'shortDate' }} </td>
+    </ng-container>
+
+    <!-- Huevo Column -->
+    <ng-container matColumnDef="huevo">
+      <th mat-header-cell *matHeaderCellDef> Huevo </th>
+      <td mat-cell *matCellDef="let movement"> {{ movement.egg.type.type || 'N/A' }} </td>
+    </ng-container>
+
+    <!-- Peines Column -->
+    <ng-container matColumnDef="peines">
+      <th mat-header-cell *matHeaderCellDef> Peines </th>
+      <td mat-cell *matCellDef="let movement"> {{ movement.combs || 0 }} </td>
+    </ng-container>
+
+    <!-- Total Orden Column -->
+    <ng-container matColumnDef="totalOrden">
+      <th mat-header-cell *matHeaderCellDef> Total Orden </th>
+      <td mat-cell *matCellDef="let movement"> {{ movement.orderTotal ? ('$' + (movement.orderTotal | number:'1.0-0')) : 'N/A' }} </td>
+    </ng-container>
+
+    <!-- Usuario Column -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let movement"> {{ movement.userName || 'N/A' }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

@@ -1,0 +1,110 @@
+/* Contenedor principal */
+.contenedor {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Títulos */
+h2 {
+  margin-top: 2rem;
+  color: #2d3748;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+/* Resumen */
+.resumen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.resumen-card {
+  flex: 1 1 250px;
+  background-color: #f7fafc;
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
+
+.resumen-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Encabezados */
+th.mat-header-cell {
+  background-color: #2d3748;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Celdas */
+td.mat-cell {
+  font-size: 0.95rem;
+  color: #2d3748;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+/* Filas alternas */
+tr.mat-row:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover en filas */
+tr.mat-row:hover {
+  background-color: #edf2f7;
+  cursor: pointer;
+}
+
+/* Estilos para estados de pago */
+td.mat-cell span {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Estados */
+.paid {
+  background-color: #c6f6d5;
+  color: #2f855a;
+}
+
+.unpaid {
+  background-color: #fed7d7;
+  color: #c53030;
+}

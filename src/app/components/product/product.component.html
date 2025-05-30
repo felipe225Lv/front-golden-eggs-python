@@ -1,0 +1,33 @@
+<div class="productos-container">
+
+  <div class="productos-grid">
+    <div class="producto-card" *ngFor="let producto of products">
+      <img
+        [src]="'/assets/' + (producto.color === 'Rojo' ? 'huevoRojo.png' : 'huevoBlanco.png')"
+        [alt]="'Huevo ' + producto.color"
+        class="producto-imagen"
+      />
+
+      <h3>{{ 'Huevo ' + producto.type.type + ' ' + producto.color }}</h3>
+      <p>{{ 'Tipo: ' + producto.type.type + ', Color: ' + producto.color + ', Vence: ' + producto.expirationDate }}</p>
+      <p class="precio">${{ producto.salePrice }}</p>
+
+      <!-- Contador de cantidad mejorado -->
+      <div class="cantidad-selector">
+        <button class="cantidad-btn" (click)="decrementarCantidad(producto)">-</button>
+        <input
+          type="number"
+          min="1"
+          [(ngModel)]="producto.cantidad"
+          class="cantidad-input"
+          (change)="validarCantidad(producto)"
+        />
+        <button class="cantidad-btn" (click)="incrementarCantidad(producto)">+</button>
+      </div>
+
+      <button class="btn-comprar" (click)="agregarProducto(producto)">
+        <mat-icon>add_shopping_cart</mat-icon> Agregar
+      </button>
+    </div>
+  </div>
+</div>

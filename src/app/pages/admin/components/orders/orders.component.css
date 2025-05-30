@@ -1,0 +1,97 @@
+.orders-container {
+  margin: 20px auto;
+  max-width: 1200px;
+  font-family: 'Roboto', sans-serif;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.orders-title {
+  margin-bottom: 25px;
+  font-weight: 700;
+  font-size: 28px;
+  color: #2c3e50;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.mat-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.mat-header-cell {
+  font-weight: 700;
+  font-size: 14px;
+  color: #34495e;
+  background-color: #ecf0f1;
+  padding: 12px 16px;
+  border-radius: 6px 6px 0 0;
+}
+
+.mat-cell {
+  background: white;
+  padding: 14px 16px;
+  border-bottom: 10px solid transparent;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.mat-row:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+}
+
+.action-buttons button {
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+button[color="primary"] {
+  background-color: #1976d2;
+  color: white;
+}
+
+button[color="primary"]:hover {
+  background-color: #125ea8;
+}
+
+button[color="accent"] {
+  background-color: #ff4081;
+  color: white;
+}
+
+button[color="accent"]:hover {
+  background-color: #e73370;
+}
+
+button[color="warn"] {
+  background-color: #d32f2f;
+  color: white;
+}
+
+button[color="warn"]:hover {
+  background-color: #a52727;
+}
+
+.mat-paginator {
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 8px 16px;
+}
+

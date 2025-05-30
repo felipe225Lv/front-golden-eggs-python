@@ -1,0 +1,50 @@
+<div class="contenedor">
+  <h2>Crea una Cuenta</h2>
+  <br/>
+
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()" class="formulario-producto">
+    <div class="form-group">
+      <label>Numero documento:</label>
+      <input type="number" name="id" [(ngModel)]="user.id" required>
+    </div>
+    <div class="form-group">
+      <label>Nombre completo:</label>
+      <input type="text" name="name" [(ngModel)]="user.name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono:</label>
+      <input type="tel" name="phoneNumber" [(ngModel)]="user.phoneNumber" required>
+    </div>
+
+    <div class="form-group">
+      <label>Correo electrónico:</label>
+      <input type="email" name="email" [(ngModel)]="user.email" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre de usuario:</label>
+        <input type="text" name="username" [(ngModel)]="user.username" required>
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" name="password" [(ngModel)]="user.password" required>
+        <small class="form-text text-muted">Mínimo 8 caracteres</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección:</label>
+      <input type="text" name="address" [(ngModel)]="user.address" required>
+    </div>
+
+    <div class="form-sactions">
+      <button type="submit" class="btn-primary">
+         Crear Cuenta
+      </button>
+      <button type="button" class="btn-secondary" (click)="resetForm(userForm)">Limpiar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,112 @@
+<div class="contenedor">
+  <h2>Gestión de Empleados</h2>
+  <br/>
+  <h2>👤 Formulario de Empleado</h2>
+
+  <form #userForm="ngForm" (ngSubmit)="onSubmit()" class="formulario-producto">
+    <div class="form-group">
+      <label>Numero documento:</label>
+      <input type="number" name="id" [(ngModel)]="user.id" required>
+    </div>
+    <div class="form-group">
+      <label>Nombre completo:</label>
+      <input type="text" name="name" [(ngModel)]="user.name" required>
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono:</label>
+      <input type="tel" name="phoneNumber" [(ngModel)]="user.phoneNumber" required>
+    </div>
+
+    <div class="form-group">
+      <label>Correo electrónico:</label>
+      <input type="email" name="email" [(ngModel)]="user.email" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre de usuario:</label>
+        <input type="text" name="username" [(ngModel)]="user.username" required>
+      </div>
+
+      <div class="form-group" *ngIf="!isEditing">
+        <label>Contraseña:</label>
+        <input type="password" name="password" [(ngModel)]="user.password" required>
+        <small class="form-text text-muted">Mínimo 8 caracteres</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Dirección:</label>
+      <input type="text" name="address" [(ngModel)]="user.address" required>
+    </div>
+
+    <div class="form-sactions">
+      <button type="submit" class="btn-primary">
+        {{ isEditing ? 'Actualizar' : 'Crear' }} Empleado
+      </button>
+      <button type="button" class="btn-secondary" (click)="resetForm(userForm)">Limpiar</button>
+    </div>
+  </form>
+
+  <h2>📋 Lista de Empleados</h2>
+  <div class="resumen">
+    <div class="resumen-card">Total empleados: {{ allUsers }}</div>
+  </div>
+
+  <div class="filter-controls">
+    <mat-button-toggle-group [(ngModel)]="showDisabled" (change)="onToggleChange()" name="employeeStatus">
+      <mat-button-toggle [value]="false">Activos</mat-button-toggle>
+      <mat-button-toggle [value]="true">Inactivos</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <!-- Nombre -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let u"> {{ u.name }} </td>
+    </ng-container>
+
+    <!-- Usuario -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let u"> {{ u.username }} </td>
+    </ng-container>
+
+    <!-- Email -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Correo </th>
+      <td mat-cell *matCellDef="let u"> {{ u.email }} </td>
+    </ng-container>
+
+    <!-- Teléfono -->
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+      <td mat-cell *matCellDef="let u"> {{ u.phoneNumber }} </td>
+    </ng-container>
+
+    <!-- Dirección -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Dirección </th>
+      <td mat-cell *matCellDef="let u"> {{ u.address }} </td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let u">
+        <button mat-icon-button color="primary" (click)="editUser(u)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteUser(u.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+  </table>
+</div>
