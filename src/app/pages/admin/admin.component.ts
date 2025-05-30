@@ -80,6 +80,7 @@ export class AdminComponent implements OnInit {
 
     // Clientes
     this.adminService.getTotalClients().subscribe(count => {
+      console.log("malparido",count);
       const clientesStat = this.stats.find(stat => stat.label === 'Clientes');
       if (clientesStat) {
         clientesStat.value = count;

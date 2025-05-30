@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { LoginResponse } from './auth.models';
 import { environment} from '../../enviroments/enviroment';
@@ -18,7 +18,15 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(credentials: { username: string; password: string }): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.api}/api/auth/login`, credentials);
+    const body = new HttpParams()
+      .set('username', credentials.username)
+      .set('password', credentials.password);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json'
+    });
+    return this.http.post<LoginResponse>(`${this.api}/auth/login`, body.toString(), {headers:headers});
   }
 
   // Guardar el token JWT en localStorage
@@ -124,7 +132,7 @@ export class AuthService {
   }
 
   getUserData(username: string): Observable<any> {
-    return this.http.get<any>(`${this.api}/api/v1/users/getByUsername/${username}`);
+    return this.http.get<any>(`${this.api}/user/getByUsername/${username}`);
   }
 
   displayAccordingRole(username: string): void {

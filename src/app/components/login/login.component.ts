@@ -53,12 +53,14 @@ export class LoginComponent {
 
     this.auth.login(credentials).subscribe({
       next: (res: LoginResponse) => {
-        this.auth.saveToken(res.accessToken);
+        console.log(res);
+        this.auth.saveToken(res.access_token);
         this.router.navigate(['/home']);
         this.closeModal();
         this.auth.displayAccordingRole(credentials.username);
       },
-      error: () => {
+      error: (err) => {
+        console.log(err);
         this.errorMessage = 'Credenciales incorrectas.';
         this.loading = false;
       }

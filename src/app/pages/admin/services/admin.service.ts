@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../enviroments/enviroment.prod';
+import {map, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +12,28 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   registerVisit() {
-    return this.http.post(`${this.api}/visits`, {}).subscribe();
+    return this.http.post(`${this.api}/visit`, {}).subscribe();
   }
 
-  getVisitCount() {
-    return this.http.get<number>(`${this.api}/visits/count`);
+  getVisitCount():Observable<number> {
+    return this.http.get<{ count: number }>(`${this.api}/visit/count`)
+      .pipe(map(res => res.count));
   }
 
   getTotalIncomeCurrentMonth() {
-    return this.http.get<number>(`${this.api}/payments/totalIncomeCurrentMonth`);
+    return this.http.get<number>(`${this.api}/pay/earnings/total_earnings`);
   }
 
   getTotalOrdersCurrentMonth() {
-    return this.http.get<number>(`${this.api}/orders/countCurrentMonth`);
+    return this.http.get<number>(`${this.api}/order/search/totalOrdersThisMonth`);
   }
 
   getTotalEggsInStock() {
-    return this.http.get<number>(`${this.api}/eggs/totalQuantity`);
+    return this.http.get<number>(`${this.api}/egg/search/count_this_month`);
   }
 
   getTotalClients() {
-    return this.http.get<number>(`${this.api}/users/count/clients`);
+    return this.http.get<number>(`${this.api}/user/byrol/3`);
   }
 
   getTotalEmployees() {
